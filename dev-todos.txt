@@ -1,0 +1,63 @@
+[#](#) Dev Todos
+
+- How to use containers to have Couchpotato docker app running alongside hass.io | https://github.com/n8io/ultimate-media-server
+- [notes](teheringnote s.md)| enable tethering on Nexus 5x
+- Hassbian notes | Set up plex on hassbian with Web plex
+- django contractor meta tag
+- [Spec](howappedmarketingspec) | cms Django app with tests, for howappedmarketing and serving pythonfreelancer.io
+    - refactor integration test to use `Client` to simulate interacting with the code at view level | @see Django tut 4
+- http://www.theandroidsoul.com/enable-tethering-nougat-alongside-android-pay/ | Root and unroot phone to get unlimited tethering
+- get yojoe as above onto ecs
+- Serverless microservices with Zappa and Flask tut | https://gun.io/blog/serverless-microservices-with-zappa-and-flask/
+- serverless facebook bot with flask?
+- re-register and setup rodriguez.zapto.org dynamic dns for home vpn
+- experiment with using packer to create an configuration-as-code machine to contain docker deployments
+- Look into Terraform | https://dev.to/koenighotze/using-terraform-for-cloud-deployments---part-1
+- Get djangocontractor Dockerized
+- link 3 sites to each howapped.com / laravelfreelancer / djangocontractor
+- Flask tutorial: https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world
+- Mining twitter data with Flask: https://marcobonzanini.com/2015/03/02/mining-twitter-data-with-python-part-1/
+- Scrapy and MongoDB: https://marcobonzanini.com/2015/03/02/mining-twitter-data-with-python-part-1/
+- Docker with flask article - https://getpocket.com/a/read/1528279787
+- tweetdigest notifier with vanilla python. MVP flask project that harvests tweets for a handle to a DB table and outputs on a webpage of a given frequency (eg a week)
+- a minimum 500 line vanilla python program with generators
+- Watch Enterprise python vids and take notes
+- a chrome extension to place a button on Google sheets UI, to invoke a serverless python program that places a new sheet on my finance Google SS | https://goo.gl/Y8qpxd
+- Find an open source Python project to contribute to
+- [notes](handbrakenotes.md) | Get handbrake-cli on rPI and convert documentaries from MyCloud
+
+----
+
+## Done
+
+x Django Contractor: complete integration test for landing page
+x Create DjangoContractor linkedin page
+x [docker notes](dockerMedium2parter.md) | lightsail vps with laravel54/MySQL/Nginx containers at http://yojoe.howapped.com
+x pycon2017 videos
+== Before baby ==
+x [Notes](discoursedockercloudnotes.md) | Install discourse docker on VPS
+x look into Django sites package https://docs.djangoproject.com/en/1.11/ref/contrib/sites/
+x Write a integration test for djangocontractor homepage
+x Make backup of rodriguez rPI SD card
+x deployment script to staging with fabric
+x get howapped.com back working | **SOLUTION*** I needed to chown the directory `/var/www/production/howapped.com` to permissions jonwhittlestone:www-data
+x change hardcoded path to `config.json` in settings
+x Serve djangocontractor-com as a simple django view with django environments for staging/production, and an .env file specifying which environment it is
+x get email online and directing to howapped.com mailbox: hello@djangocontractor.com
+x [notes](stagingsiteonpiwithsubdomain.md) | djangocontractor serving with guniciorn on pi as staging-djangocontractor-com.rodriguez.local
+x [Notes](djangopinotes.md) |  Get gunicorn running on Ubuntu with [DO] (https://www.digitalocean.com/community/tutorials/how-to-set-up-django-with-postgres-nginx-and-gunicorn-on-ubuntu-14-04) article onn rPi
+x AWS Lynda training notes
+x AWS Lynda autoscaled example on free tier
+x Get rid of Linux google sheet and exchange for knowledge/wiki entries
+x Get virtualenv / python 3 working on rPi
+x reinstate laravelfreelancer email to gsuite
+x djangocontractor.com skin
+x Vim:  Auto-generating PHP-DOC for a PHP func
+x Vim: Look into https://github.com/jiangmiao/auto-pairs for auto closing braces etc
+x djangocontractor 'lightweight' django install
+x Vim: Quick site-wide searching and file opening
+x  [Notes](NotesDnsupdater) | Dynamic DNS updating Python script using Celery from http://docs.celeryproject.org/en/latest/django/first-steps-with-django.html
+x Clean up of NAS / WD Sync
+x Raspberry PI VPN
+x Does laravelfreelancer email still work?
+

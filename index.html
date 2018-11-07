@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<script src="browsertab-wiki/node_modules/jquery/dist/jquery.min.js"></script>
+<script src="browsertab-wiki/node_modules/marked/marked.min.js"></script>
+<script type='text/javascript'>
+$( document ).ready(function() {
+    var endpoint = 'dev-todos.md';
+    endpoint = endpoint + "?cb=" + Math.random();
+    console.log(endpoint);
+    $.get( endpoint, function( data ) {
+        $( "#content" ).html( data );
+        $("#content").each(function(){
+            var content = $(this).text();  
+            console.log(content);
+            var splitted = content.split("\n");  
+            var output = '';
+            
+            var todoCount = 0;
+            // get todoCount
+            for (var i in splitted) {
+                if (splitted[i] === '## Done' || splitted[i] === '## Lined Up')
+                    break;
+
+                if (splitted[i].match('^-')) {
+                    todoCount = todoCount + 1;
+                }
+
+            }
+            // get output
+            for (var i in splitted) {
+                if (splitted[i] === '## Done' || splitted[i] === '## Lined Up')
+                    break;
+
+                if (splitted[i] === '# Projects') {
+                    splitted[i] = '# Projects ('+ todoCount +')'
+                }
+                output += marked(splitted[i]);
+            }
+            $(this).html(output);
+        });
+    });
+});
+</script>
+<link rel="stylesheet" href="browsertab-wiki/app.css">
+</head>
+<body class='bin'>
+    <div id="content" class='editor'>
+
+    </div>
+</body>
+
+
+</html>
