@@ -144,52 +144,89 @@ kk
 - create model + db migration with `php artisan make:model Payee -m`
 
 ----
-37 / 52 - Getting Started: Installing BotMan
+37 / 52 - Create a todobot: Add a todo
+- 
+----
+38 / 52 - Create a todobot: Mark a task as finished
 
 ----
-38 / 52 - Getting Started: Installing BotMan
+39 / 52 - Create a todobot: Delete existing todos
 
 ----
-39 / 52 - Getting Started: Installing BotMan
+40 / 52 - Create a todobot: Improving the bot
+- add user_id column to table so get todos lists the tasks created by that user and multiple users can use at the same time
 
 ----
-40 / 52 - Getting Started: Installing BotMan
+41 / 52 - Create a todobot: connecting to telegram
+- `composer require botman/driver-telegram`
+- run ngrok with `~/ngrok http 80`
+- https://my.telegram.org/apps 
+- `php artisan botman:telegram:register`
+- https://web.telegram.org/#/im?p=@tuppencetalkerbot 
+- can welcome the new user by `hears('/welcome', function() {});`
+- send button and callback to reply - ie button for 'Mark as Completed' with `callbackData()`
 
 ----
-41 / 52 - Getting Started: Installing BotMan
+42 / 52 - Botman on your website: Intro
+- add botman webwidet
+ 
+----
+43 / 52 - Botman on your website: Associating users
+- can pass a userid in javascript to the widget
 
 ----
-42 / 52 - Getting Started: Installing BotMan
+44 / 52 - Botman on your website: programmatic access
+- send messages
+- https://botman.io/2.0/web-widget#api
+- interact with chat widget from `<a href='#' onclick='botmanWidget.say("hi")'>say hi in widget</a>`
 
 ----
-43 / 52 - Getting Started: Installing BotMan
+45 / 52 - Alexa Skill Development: Intro
+
+- https://botman.io/2.0/driver-amazon-alexa
+- https://developer.amazon.com/alexa/console/ask
+- create custom skill
 
 ----
-44 / 52 - Getting Started: Installing BotMan
+46 / 52 - Alexa Skill Development: Your first skill
+- invocation - the name of the skill that you say when you start it
+- Define intents
+- sample utterances, example sentences that will be said to trigger 
+- "Alexa, ask my bank how much is in my account"
+- Save Model to train it with utterances,  and build it
+- in botman, listen for the intent name
+- hook it up by going to endpoint definition - https://developer.amazon.com/alexa/console/ask/build/custom/amzn1.ask.skill.67461022-4dad-48e6-84b3-6af1c0f06833/development/en_GB/endpoint
+- can test by speaking into mic on Alexa simulator
 
 ----
-45 / 52 - Getting Started: Installing BotMan
+47 / 52 - Alexa Skill Development: Skill slots
+- define another intent to search for conferences with specific languages
+- define sample utterances
+- custom slots are variables you can use inside of your intents
+- access with `$slots = $bot->getMessage()->getExtras('slots');`
 
 ----
-46 / 52 - Getting Started: Installing BotMan
+48 / 52 - Alexa Skill Development: Pre-existing Slot types
+- Amazon. slot types are avaiable  like Amazon.EuropeanCity and call the slot 'Location'
 
 ----
-47 / 52 - Getting Started: Installing BotMan
+49 / 52 - Alexa Skill Development: Dialog management
+- intent fulfilment to by marking the slot (eg. ProgrammingLanguage) as required so that Alexa can prompt with 'What is the programming language you are interested in'
+- botman must do this, Alexa does not do this automagically
+- by accessing a dialog state `$bot->getMessage()->getPayload()->get('request')`
+- `return $bot->dialogDelegate()`
+----
+50 / 52 - Facebook Messenger: Getting Started
 
 ----
-48 / 52 - Getting Started: Installing BotMan
+51 / 52 - Facebook Messenger: Getting Started button
+- php artisan botman:facebookAddStartButton
+- when making changes, in FB, Delete Conversation
+----
+52 / 52 - Facebook Messenger: Greeting Texts
+- 
 
 ----
-49 / 52 - Getting Started: Installing BotMan
 
-----
-50 / 52 - Getting Started: Installing BotMan
-
-----
-51 / 52 - Getting Started: Installing BotMan
-
-----
-52 / 52 - Getting Started: Installing BotMan
-
-----
+53 / 52 - Facebook Messenger: Persistent menus
 
