@@ -13,6 +13,7 @@
 * Angular 2
 * [Bash & Command Line](Line.md)
 * [PHP](PHP)
+* [JS](JS)
 
 ## Databases ##
 * [postgres](postgres.md)
