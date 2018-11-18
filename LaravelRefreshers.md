@@ -26,3 +26,7 @@
 - Generate API docs with Swagger
 
     https://codeburst.io/generate-beautiful-restful-laravel-api-documentation-with-swagger-a9df486e0368
+    
+- Laravel Udemy REST API Course
+
+    https://www.udemy.com/restful-api-with-laravel-php-homestead-passport-hateoas/
