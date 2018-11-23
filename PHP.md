@@ -3,6 +3,9 @@
 - [Phalcon](Phalcon)
 - [LaravelRefreshers](LaravelRefreshers)
 - [LaravelBotMan](LaravelBotMan)
+- [debuggingphp](debuggingphp)
+- [LaravelAPIUdemy](LaravelAPIUdemy)
+
 
 ----
 - Run PHP 5.6 CLI app with docker image

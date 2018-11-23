@@ -135,10 +135,71 @@
 
 ### 03-41 - looping through objects   ###
 - nested 
+
+### 03-42 - loop through range of integers   ###
+- `<div v-for="(value, key, index) in person">{{ key }}: {{ value }} {{index}}"></div>`
+- `<span v-for="n in 10">{{n}}</span>`
+
+### 03-43 - keeping track of elements with v-for   ###
+- to ensure vuejs knows about the position and the item (element itself) to be safe against reording, assign a unique ky with the `v-bind` syntax
+- if you get strange bugs with a v-for where items appear in the wrong order, you probably aren't assigning a key
+- `<li v-for="(ingredient, i) in ingredients" :key="ingredient">{{ingredient}}`
+
+
+### 03-44 - Module wrap up   ###
+- conditionals and lists
+- loops
+
 ----
 
 
 ## Module 04 of 24 Project - The monster slayer ##
 
 
+### 04-46 - Introduction challenge   ###
+- https://github.com/skdigital/vue-monster-slayer 
+- v-if for conditionall showing things, setting styles, v-for, two rounds getting execited for you and monster
+- styles and html can be found
 
+- My version of project: https://github.com/jonwhittlestone/vue-monster-slayer
+
+### 04-47 - setting up course project   ###
+
+### 04-48 - creating the vue instance and styling the health bars   ###
+
+### 04-49 - start a new game, and actions  ###
+- `v-else` only works with containers of the same type eg. `<section>`
+
+### 04-50 - implementing a start game method  ###
+
+### 04-51 - implementing an attack game method  ###
+- create each function in `methods()` for each action button
+
+### 04-52 - write better code  ###
+- check if we win `checkWin()`
+
+----
+
+## Module 05 of 24 - Understanding the Vue instance
+
+### 05-62 - Module Introduction  ###
+
+----
+
+## Module 06 of 24 - Moving to a real development workflow with webpack and vue-cli ##
+
+### 06-78 - Module Introduction ###
+
+----
+
+## Module 07 of 24 - An introduction to Components ##
+
+### 07-90 - Module Introduction ###
+
+----
+
+## Module 08 of 24 - Communicating between components ##
+
+### 08-103 - Module Introduction ###
+
+----
