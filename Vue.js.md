@@ -178,24 +178,198 @@
 ### 04-52 - write better code  ###
 - check if we win `checkWin()`
 
+### 04-53 - Implementing special attack  ###
+- code duplication
+- monster attacks
+
+### 04-54 - implementing a heal method  ###
+- always heal by 10
+- when you heal, monster always atacks
+- don't want to heal in exceess of maximum health
+
+### 04-55 - implementing the give up method  ###
+
+### 04-56 - adding items to a log  ###
+- `this.turns.unshift({ isPlayer: true, text: 'Player hits monster for' + damage })`
+
+### 04-57 - skkhowing a log with v-for ###
+
+### 04-58 - finishing the log ###
+
+### 04-59 - add conditional styling to log ###
+- `:class=~{'player-turn': turnisPlayer, 'player-turn' : 'monser-turn'}`
+
+### 04-60 - wrap up ###
+
 ----
 
 ## Module 05 of 24 - Understanding the Vue instance
 
 ### 05-62 - Module Introduction  ###
+- how it works
+- which properties are created
+- what is the lifecycle
+- theoretical module
 
+### 05-63 - some basics  ###
+- http://jsfiddle.net/smax/9a2k6cja
+- contains computed, watch
+- the vue instance is the middleman between html code and business logic
+- dependencies where we depend on the value of another property (computed properties)
+- can have more than 1 vue instance
+- can access vue instance from outside
+ 
+### 05-64 - multiple instances  ###
+- it's ok to control multiple peices with multipe vue instances
+- can only control specific instance with this keyword, it's encapsulated, there is no connection between the two instances
+- can see when only want to have a page show a widget (eg. calendar) and not a SPA
+
+
+### 05-65 - accessing the vue instance from outside  ###
+- `onChange: function() {$vm1.title = 'Changed!'}`
+- probably better just to include same properties in same vue instance in the first place
+- can set outside of vue instance
+- `$vm1.title`  // vuejs does this automatic proxying for us
+
+### 05-66 - how vuejs manages data and methods  ###
+- vm0 is the core object of vue instance
+- vuejs will take instance and take data properties and methods and use them as native and sets as a watcher so it knows when to update the DOM
+
+- watcher layer where recognised where something has changed but we cannot create reactive properties from outside the vue instance. getters and setters are created by vuejs when created in the constructor
+
+### 05-67 - a closer look at el and data  ###
+- `$el` refers to our template and html code
+- `$data`
+- is possible to create the data before you create the vue instance and then pass it to the constructor `vm1.data = yourDataObject`
+- vuejs does not create enclosed world and is able to interact with the JavaScript code around it
+- you don't have to create a JS-only application
+
+### 05-68 - placing $ref and using in templates  ###
+- `<button v-on:click="show" ref="myButton``">Button Text</button>`
+- `this.$refs.myButton.innerText = 'Test';`
+- vuejs will override this behaviour rendering it based on its internal template
+- this is not reactive and your changes with `ref` maybe overrided
+- refs is based used for getting a value rather than setting
+
+### 05-69 - where to learn more about the vuejs api  ###
+- https://vuejs.org/v2/api/
+
+### 05-70 - mounting a template  ###
+- ` vm1.$mount('#app');`
+-  properties prefixed with `$` are the native properties/methods we can use
+- actually now an underscore `console.log(vm1._data.title);`
+- may have a use case where the object for mounting the vue instance does not exist yet
+- `var vm3 = new Vue({template: '<h1>Hello</h1>'})`
+- `document.getElementById('app3').appendChild(vm3.$el);`
+- ^ not common
+
+### 05-71 - using components  ###
+- create a reusable component with selector `<hello`>
+- 
+    Vue.component('hello', {
+        template: '<h1>Hello!</h1>'
+    });
+    
+### 05-72 - limitations of using components  ###
+- precompiled version
+- $template have to specifiy everything as a string
+
+### 05-73 - VueJS DOM updating  ###
+- it's not reloading the page, its updating parts of it via JavaScript
+- the Vue instance holds a template 
+- each property we set up has its own watcher
+- accessing the real DOM is the part which affects performance the most
+- Virtual DOM is the intermediary and a copy of the DOM parsed in JavaScript and watches the changes and writes them to the Virtual DOM
+- and checks for differences and then updates the real DOM
+
+## 05-74 - VueJS Instance lifecycle  ###
+- we can tap into this to update certain code with hooks
+- see diagram
+
+
+### 05-75 - VueJS lifecycle in practice  ###
+- by adding them as functions to the vue instance
+- not in `methods `property, but on the root
+- `beforeCreate()`
+- `created()`
+- beforeMount()
+- mounted()
+- beforeUpdate()
+- updated() // after DOM has been updated
+- `beforeDestroy()`     //do some cleanup to free up resources
+- `destroyed`()`
+
+### 05-76 - module wrap up  ###
+- how vuejs creates instances and the lifecycle hooks
+- virtual DOM diffing
 ----
 
 ## Module 06 of 24 - Moving to a real development workflow with webpack and vue-cli ##
 
 ### 06-78 - Module Introduction ###
 
+### 06-79 - Why we need a dev server ###
+- so vuejs can work with real HTTP transactions 
+
+### 06-80 - What is a development workflow ###
+- use ES6, be able to transform before going to production server
+- can compile single file templates (instead of using `el` property and inferring template from DOM
+- can apply preprocessors and use next gen JS features
+- compiler is removed from final vuejs package so 30% smaller in size
+ 
+### 06-81 - using vue-cli ###
+- if we went on our own, we could use webpack on our own
+- use vue cli to fetch vuejs project templates with a build process already set up
+
+### 06-82 - installing ###
+- `vue init webpack-simple vue-cli`
+- `cd vue-cli; npm install`
+- `npm run dev`
+- most packages just needed for development
+ 
+
+### 06-83 - an overview of file structure ###
+- `/home/jon/code/playground/vue/vue-cli`
+ 
+
+### 06-84 - Understanding .vue files ###
+- outsource template and vue.js code to separate files but will run natively in browser
+- override el selector with ES6 `render()` function
+- specifying template, not as a string but a compiled vuejs template
+- `.vue` files always have a `<template>`, then `<script>` containing like a new vue instance, then possible styling
+-  still works if remove all template and just leave in script: `export default {}`
+
+### 06-85 - Understanding the object in the Vue file ###
+- whatever we export is a Vue instance
+- add `data` and `methods` if we want
+
+### 06-86 - how to build app for production ###
+- `npm run build` will minify and create `/dist` folder
+
+### 06-87 - wrapup ###
 ----
 
 ## Module 07 of 24 - An introduction to Components ##
 
 ### 07-90 - Module Introduction ###
+- reusable components to put UI and business logic in different places
 
+
+### 07-91 - Intro to components ###
+- a component extends the vue instance
+- simple example, repeatable as often as you want
+- like our own htnml element
+- make sure it is unique/prefix
+- `Vue.component('my-selector', {data:function(){return{status:'Critical'}}});`
+- wrap data property in a function so it doesn't intefere
+
+### 07-92 - storing data in components ###
+- there is an issue with having a shared data object
+- so return a function containing the variable and then we have two differenct objects / locations in memory
+- `this` will only refer to the current component instance because it is used in the context of the component
+- each vue component is its own component and we run into problems when sharing a data source
+
+### 07-92 - registering components locally and globally ###
 ----
 
 ## Module 08 of 24 - Communicating between components ##
@@ -203,3 +377,99 @@
 ### 08-103 - Module Introduction ###
 
 ----
+
+## Module 09 of 24 - Advanced Component Usage ##
+
+### 09-117 - Module Introduction ###
+
+----
+
+## Module 10 of 24 - Second Course Project - Wonderful Quotes ##
+
+### 10-131 - Module Introduction ###
+
+----
+
+## Module 11 of 24 - Handling User Input with Forms ##
+
+### 11-143 - Module Introduction ###
+
+----
+
+## Module 12 of 24 - Using and creating directives ##
+
+### 12-156 - Module Introduction ###
+
+----
+
+## Module 13 of 24 - Improving your App with Filters and Mixins ##
+
+### 13-169 - Module Introduction ###
+
+----
+
+## Module 14 of 24 - Animations and Transitions ##
+
+### 14-180 - Module Introduction ###
+
+----
+
+## Module 15 of 24 - Connecting to Servers ##
+
+### 15-208 - Module Introduction ###
+
+----
+
+## Module 16 of 24 - Routing a Vuejs App ##
+
+### 16-222 - Module Introduction ###
+
+----
+
+## Module 17 of 24 - Better State Management ##
+
+### 17-250 - Module Introduction ###
+
+----
+
+## Module 18 of 24 - Final Project - The stock trader ##
+
+### 17-273 - Module Introduction ###
+
+----
+## Module 19 of 24 - Deploying ##
+
+### 17-299 - Module Introduction ###
+
+----
+## Module 20 of 24 - Course Roundup ##
+
+### 20-302 - Course Roundup ###
+
+----
+## Module 21 of 24 - All course exercies ##
+
+### 21-302 - Exercises ###
+
+----
+## Module 22 of 24 - Axios ##
+
+
+### 22-330 - About this section ###
+
+----
+## Module 23 of 24 - Authentication ##
+
+### 23-342 - About this section ###
+
+----
+## Module 24 of 24 - Form Input Validation ##
+
+### 24-360 - About this section ###
+
+### 23-342 - About this section ###
+
+
+### 22-330 - About this section ###
+### 21-302 - Exercises ###
+
