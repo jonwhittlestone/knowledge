@@ -369,7 +369,11 @@
 - `this` will only refer to the current component instance because it is used in the context of the component
 - each vue component is its own component and we run into problems when sharing a data source
 
-### 07-92 - registering components locally and globally ###
+### 07-93 - registering a component globally and locally ###
+- store component as variable (local) with a component property in a vue instance
+
+### 07-94 - the root component in the app.vue file ###
+- https://bitbucket.org/jonwhittlestone/vuejs-module7-components/src/master/src/
 ----
 
 ## Module 08 of 24 - Communicating between components ##
