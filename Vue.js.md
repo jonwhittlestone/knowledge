@@ -1,4 +1,4 @@
-# Ultimate Vue.js Udemy Course #
+[#](#) Ultimate Vue.js Udemy Course #
 * Plex: http://localhost:32400/web/index.html#!/server/f145ece5cbe45ac49c5ab58bd08851b4f312c16b?key=%2Flibrary%2Fsections%2F3
 * Plex Playlist: http://localhost:32400/web/index.html#!/server/bc0049189e861dd58c943d9c7307957a899ce527/playlist?key=%2Fplaylists%2F74323
 * nautilus "/home/jon/Videos/Learn/Udemy - vuejs-2-the-complete-guide" 
@@ -691,11 +691,57 @@
 
 ## Module 13 of 24 - Improving your App with Filters and Mixins ##
 - https://vuejs.org/v2/guide/filters.html
-- 
 
 ### 13-169 - module intro  ###
+- really help to structure your app 
 
+### 13-170 - creating a local filter  ###
+- a small syntax feature to transform output in the data, in the template
+- doesn't transform the data itself, just what the user sees
+- vuejs doesn't ship with built in filters
+- add filters property to vue instance
+- `{{text | toUpperCase }}`
+
+### 13-171 - global filters and how to chain   ###
+- `Vue.filter('to-lowercase', function(label) {return value.toLowerCase();})`
+
+
+### 13-172 - an often-better alternative with computed properties   ###
+- better for more complex filtering
+- only calculate if input changes - so its very performant
+- vuejs will create its own variable (computed properties)
+-  can do simplistic search in an array
+ 
+### 13-173 - understanding mixins   ###
+- https://vuejs.org/v2/guide/mixins.html
 - 
+### 13-174 - creating and using mixins   ###
+- abstract out to separate file to allow us to share code
+- `import { fruitMixin } from './fruitMixin';`
+- `export default { mixins: [fruitMixin] }` 
+- ie. register mixins in the components where we want to use them
+
+### 13-175 - How mixins get merged   ###
+
+- vue adds code from existing mixin to existing vue instance
+- both code in a mixin lifecycle hook and vue instance will be run
+- the mixin is not be able to destroy anything
+- component always has control
+
+### 13-176 - Global mixins (special case)   ###
+- a global mixin is added to every instance and compoenent and in the most case, this is prbably not what you want unless you want to create third-party apps
+
+### 13-177 - mixins and scope   ###
+- is the data in the mixin. is the object actually shared? or is a new instance created. Not shared, it's replicated
+- safe for us to access data and mainuplate it without affecting the data. If you want to do this, use event bus
+- could just use a normal JS object and import it
+
+### 13-178 - wrap up   ###
+- filters - `Vue.filter()` or register locally
+- limitations: use computed properties for more complex operations and use mixins to share them
+- share code with mixins to avoid code duplication
+- and get separate copy of mixin for each component where you added
+
 ----
 
 ## Module 14 of 24 - Animations and Transitions ##
@@ -703,6 +749,83 @@
 - Half way through lessons count!!
  
 ### 14-180 - Module Introduction ###
+
+### 14-181 - understanding transitions ###
+- can animate attaching/removal to/from the DOM
+- vuejs offeres the `<transition>` element
+
+### 14-182 - preparing code to use transitions ###
+- animating anything within the `<transition>` tag
+- can only animate 1 element
+
+### 14-183 - setting up a transition ###
+- attaches CSS class that vue does automatically
+- vuejs sniffs your css code to inspect animation properties
+ 
+### 14-184 - assigning CSS classes ###
+- https://vuejs.org/v2/guide/transitions.html 
+
+### 14-185 - creating a fade transition with css transition property ### 
+
+### 14-186 - creating a slide transition with CSS animation property ### 
+- use animation instead of `<transition>`
+
+### 14-187 - mix transition and animation properties ### 
+
+### 14-189 - setting up on initial (on-load) Animation ### 
+
+### 14-190 - animate.css ### 
+- https://daneden.github.io/animate.css/
+- can overwrite default classes with `enter-class="name-we-choose"`
+
+### 14-191 - using dynamic names and attributes  ### 
+- use a select for the animation type
+- using dynamic binding with `<transition :name='alertAnimation'>` like normal HTML attributes
+
+### 14-192 - transitioning between multiple elements (theory)   ### 
+
+### 14-193 - transitioning between multiple elements (practice)  ### 
+- `v-show` will not work, must use `v-if`
+- must use `key` attribute that is recognised by vuejs
+- `mode='out-in'` 
+
+### 14-194 - listening to transitiion event hooks  ### 
+- https://vuejs.org/v2/guide/transitions.html#JavaScript-Hooks
+- use JavaScript instead of CSS for animating
+- the `<transition>` element emits events so we can listen to it
+
+### 14-195 - understanding JavaScript animations  ### 
+- `<transition @before-enter='beforeEnter' ... >`:w
+
+### 14-196 - Excluding CSS from your Animation   ### 
+- `:css="false"` don't look for css classes
+ 
+### 14-197 - creating an animation in javascript   ### 
+- in `enter(el, done){}`
+ 
+### 14-198 - animating dynamic components    ### 
+- import dangerAlert and dangerSuccess components
+- toggling between the two components
+
+### 14-199 - animating lists with transition-group      ### 
+- https://vuejs.org/v2/guide/transitions.html#List-Transitions
+ 
+### 14-200 - using transition-group ### 
+- get random index with `Math.floor(Math.random() * this.numbers.length)`
+ 
+### 14-201 - using transition-group to animate a list ### 
+- works just like transition
+- https://vuejs.org/v2/guide/transitions.html#List-Move-Transitions
+ 
+### 14-202 - understanding the app ### 
+
+### 14-203 - creating the app ### 
+- transitioning between components
+
+### 14-204 - Adding Animations ### 
+- `transform: rotateY(90 deg);`
+
+### 14-205 - Wrap up ### 
 
 ----
 
