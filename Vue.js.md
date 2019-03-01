@@ -853,24 +853,32 @@
 
 ----
 ## Module 19 of 24 - Deploying ##
+- deploy to Amazon S3
 
-### 17-299 - Module Introduction ###
+### 19-300 - Preparing for Deployment ###
+- `npm run build`
+- see `src/webpack.config.js`
+
+### 19-301 - Deploying the App ###
+- create bucket, static site policy, upload `index.html` and `dist/` along with js bundle
+- redirect 404 errors to index.html so vuejs can handle
 
 ----
 ## Module 20 of 24 - Course Roundup ##
 
-### 20-302 - Course Roundup ###
-
 ----
 ## Module 21 of 24 - All course exercies ##
-
-### 21-302 - Exercises ###
 
 ----
 ## Module 22 of 24 - Axios ##
 
 
 ### 22-330 - About this section ###
+
+### 22-331 - What is Axios ###
+- an alternative to vue-resource
+ 
+### 22-332 - Project setup ###
 
 ----
 ## Module 23 of 24 - Authentication ##
