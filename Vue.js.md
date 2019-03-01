@@ -1,4 +1,4 @@
-# Ultimate Vue.js Udemy Course #
+[#](#) Ultimate Vue.js Udemy Course #
 * Plex: http://localhost:32400/web/index.html#!/server/f145ece5cbe45ac49c5ab58bd08851b4f312c16b?key=%2Flibrary%2Fsections%2F3
 * Plex Playlist: http://localhost:32400/web/index.html#!/server/bc0049189e861dd58c943d9c7307957a899ce527/playlist?key=%2Fplaylists%2F74323
 * nautilus "/home/jon/Videos/Learn/Udemy - vuejs-2-the-complete-guide" 
@@ -369,16 +369,124 @@
 - `this` will only refer to the current component instance because it is used in the context of the component
 - each vue component is its own component and we run into problems when sharing a data source
 
-### 07-93 - registering a component globally and locally ###
-- store component as variable (local) with a component property in a vue instance
+### 07-93 - registering components locally and globally ###
+- use same selector, but different component
+- assign the instance to a variable and tell which local component to use with the `components` variable to set up using a local instance
+- to use globally - `Vue.component('my-cmp', {})`
 
-### 07-94 - the root component in the app.vue file ###
-- https://bitbucket.org/jonwhittlestone/vuejs-module7-components/src/master/src/
+### 07-94 - The root components in the App.vue file ###
+- the `render` function is a better alternative to the `template` property
+- already exporting an object as root Vue instance, remember to return the `data` property
+
+### 07-95 - Creating a new component ###
+- https://github.com/neutraltone/vue-js-2-the-complete-guide/blob/master/7-an-introduction-to-components/introduction-to-components/src/Home.vue
+- can use ES6 since it's getitng compiled to ES6
+- `main.js` is the entry point
+- the template tag must only have one child / wrap all template code in one root element`i
+
+
+### 07-96 - using components ###
+- file naming convention `ServerStatus.vue` but unrelated to selector that you use
+- track the component 5 times by using `v-for` directive
+- https://github.com/neutraltone/vue-js-2-the-complete-guide/blob/master/7-an-introduction-to-components/introduction-to-components/src/Home.vue#L3
+- using global and local component
+- import them in other files with ES6 (required for this multiple file set up)
+
+### 07-97 - moving to a better folder structure  ###
+- structure your folders according to feature
+- `src/components/Shared`
+
+### 07-99 - how to name components and selectors  ###
+- we can use case sensitive selectors if we want as its being compiled to javscript
+- vue.js will automatically give us access to the hyphenated name (convention to use `<app-header>` in template)
+
+### 07-100 - scoping component styles  ###
+- any style set up will be applied globally so add `<style scope>`
+- vuejs emulates the shadow dom, a dom within a dom (sub doms)
+
+### 07-101 - wrap up   ###
+- register components globally/locally
+- choose selector names
+- styling
+- directory structure
+
 ----
-
 ## Module 08 of 24 - Communicating between components ##
 
+- how to send data from a parent to a child
+- not just contained peices of code, but there are communications accross components
+
 ### 08-103 - Module Introduction ###
+- finished module app:
+    - /home/jon/code/playground/vue/section8-component-communication/dl/130 Section-Code-Finished/Section Code (Finished)  
+    
+
+### 08-104 - Communication problems ###
+- /home/jon/code/playground/vue/section8-component-communication/dl/104 Section-Code-Start/Section Code (Start)
+- how to get the name from the parent component
+
+### 08-105 - transferring from parent to child component using props ###
+- `props`
+- properties set from outside
+- tell `UserDetail.vue` by adding `props` array and will give us access to name
+- in order to actually pass it:
+    - `<app-user-detail v-bind:name='name'></app-user-detail>`
+- passing a dynamic property using a colon to make it dynamic
+
+### 08-106 - naming props ###
+- case sensitive
+
+### 08-107 - using props in Child component ###
+- as well as output in child template, we can use it in Vue instance
+- as long as it's in props, it can be accessed like a normal property
+
+### 08-108 - Validating props ###
+- if you want to validate, `props` should be an object
+- making sure only get the data we want to get
+- `props {myName: String}` 
+- Expected String, got Number
+- `required: true` to ensure that the property is passed
+- can set a `defaault` instead of `required`
+ 
+### 08-109 - using custom events for child parent communication   ###
+- pass an event to our parent component
+- reset name
+-  the properties are only a pointer to a place in memory
+- difference between reference types and primitive types
+- `this.$emit('nameWasReset', this.myName);`
+- listen to in parent component - `<app-user-detail @nameWasReset="name=$event"></app-user-detail>`
+
+### 08-110 - understanding unidirectional data flow ###
+- generall communication is unidirectional meaning the data flowas from parent to child and child to parent by not from child to child
+
+### [08 111](08-111) - communicating with callback function ###
+
+### 08-112 - getting data from one child to another child ###
+- communication between sibling components
+- editAge()
+- `UserEdit.vue`
+- after setting up an `$emit()` event on the child component, then set up a listener on the parent - `$ageWasEdited="age=$event`
+- pass as prop to parent and all children which use property
+- another alternative is to use an event bus
+ 
+### 08-113 - event bus, using an object to listen to events and pass on  ###
+- in Angular 2, this is known as a service
+- state management for small to medium size applications
+- store in a constant `eventBus` which is a new vue object and then export it
+- import named export into a component
+- add a new lifecycle hook `created() {}` and register a [listener](listener)
+- create event bus in `main.js` before other compoennts are loaded
+-  managing state of a property across multiple components can get very complicated quickly so most people use vuex
+
+ 
+### 08-114 - centralising code in an event bus vue instance  ###
+- in child component can use `eventBus.changeAge(this.userAge);`
+- makes a lot of sense if you don't want to duplicate code, accessible from anywhere in application as long as you import it
+
+### 08-115 - wrap up  ###
+- cross component communication
+- primitive and referece types
+- how to pass data
 
 ----
 
@@ -386,11 +494,96 @@
 
 ### 09-117 - Module Introduction ###
 
+### 10-118 - setting up module project ###
+- simple quote component with single template file
+- dynamically set the content of compoenent from the parent
+
+### 10-119 - passing content - suboptimal solution  ###
+- sending ' to `<app-quote>`a wonderful quote'
+- vuejs offers us slots to be able to reserve for content being passed from outside 
+
+### 10-120 passing content with slots  ###
+- in child component where we want to receive the data, add `<slot>` component and renders the content we are passing from outside
+
+### 10-121 how slot gets compiled and styled  ###
+- child component styling is applied to the data coming from outside
+- if parent has the styling (and set to scoped), the styling won't apply
+- compiling the template ('rendering any vuejs operation')  the component where you actually have the code for the template will be the one doing the changes
+- styling on the child, everything else (where you can use vue syntax) is on the parent
+
+### 10-122 using multiple named slots  ###
+- one slot for the title, one for the content
+- `<h2 slot="content">distribute the content into a named slot</h2>`
+
+### 10-123 default slots and slot default  ###
+- vuejs will treat the slot without a name as the default slot
+- can also set up default content to be displayed:
+    - `<slot name='subtitle'>this will get overwritten if there is data</slot>`
+
+### 10-124 slot summary   ###
+- help to dristribute content in other components
+- make sure content is distributed in html as you intend
+
+### 10-125 switching multiple components with dynamic components   ###
+- eg. `appAuthor`, `appNew`
+- one place where will display one of three components depending which button is pressed
+- use `<component :is="selectedComponent``">` to dynamically add components and is bound to variable
+- dynamically replace content of components 
+
+### 10-126 dynamic component behaviour   ###
+- incrememnt a counter in a component to see if the component stays alive or is destroyed and created new
+- the counter starts agan at zero meaning the component is destroyed and recreated (could have also tapped into the `destroyed()` lifecycle hook)
+
+### 10-127 how to override to destroy behaviour of dynamic components   ###
+- keeping dynamic components alive
+- `<keep alive><component :is='selectedComponent'><p>Default Content</p></component></keep-alive>`
+- but then lose `destroyed()` lifecycle hook
+ 
+### 10-128 dynamic component lifecycle hook   ###
+- `deactivated()`
+- `activated()`
+
+### 10-129 wrap up    ###
+- slots to distribute content
+- dynamic components depending on the state of a property
+ 
 ----
 
 ## Module 10 of 24 - Second Course Project - Wonderful Quotes ##
 
 ### 10-131 - Module Introduction ###
+-  `/home/jon/Dropbox/playground/vue-section10-quotes/jw`
+
+### 10-132 - setup ###
+
+### 10-133 - initialising the app ###
+
+### 10-134 - creating the application components ###
+- use a `v-for` to replicate quote as often as needed inside of row
+ 
+
+### 10-136 - Allowing users to create qotes with a newquote component ###
+- `<button @click.prevent="createNew">Add Quote</button>`
+- add prevent modifier to prevent default behaviour
+- in `createNew()` method we `emit()` the new quote to the parent component
+
+### 10-137 - Adding quotes with custom events ###
+- `this.$emit('quoteAdded', this.quote);`
+- in the parent component, listen to quote added with:
+    - `<app-new-quote @quoteAdded='newQuote'></app-new-quote>`
+
+### 10-138 - adding an info box ###
+
+### 10-139 - Allowing for quote deletion ###
+- native modifier, react to a click on this component if it happens on the native element 
+- `<app-quote v-for="quote in quotes" @click.native='deleteQuote'>{{quote}}</app-quote>`
+- add listener in parent component, and implement method to remove the quote from the `quotes[]` array
+
+
+### 10-140 - controlling quotes with a progress bar ###
+
+### 10-141 - finishing touches and state management ###
+- pass `quoteCount` from parent down to child `<app-header :quoteCount='quoteCount'></app-header>`
 
 ----
 
@@ -398,23 +591,241 @@
 
 ### 11-143 - Module Introduction ###
 
+### 11-144 - basic input form binding ###
+- use `<input v-model='email'>`
+- vuejs will check what the source of the editing automagically
+
+### 11-145 - grouping data with pre-populating inputs  ###
+- can bind to a property in an object to nest properties
+
+### 11-146 - modifying user input with input modifiers  ###
+- reacts to the input event by default
+- listen to the change event with the lazy modifier
+- `<input v-model.lazy='userData.password'>`
+- `<input v-model.number='userData.age>`
+
+### 11-147 - binding text area and saving line breaks  ###
+- don't use string interpolation to set default for value for `<textarea>`
+- to keep line break use normall css `<p style='whitespace: pre'> something</p>`
+
+### 11-148 - checkboxes and saving data in arrays   ###
+- the property you want to bind to should be an array and vuejs will detect that it should be an array and merge the value of the checkboxes
+
+### 11-149 - using radio buttons  ###
+- map the same variable to both radio button elements and vuejs recognises that only one is selectable and are party of a group
+
+### 11-150 - handling dropdows with select and option  ###
+- `<option v-for='priority in priorities' :selected="priority == 'Medium'" v-model="selectedPriority">{{ priority }}</option>`
+
+### 11-151 - what v-model does and how to create a custom control ###
+- switch component
+- make our own UI component
+ 
+### 11-152 - creating custom input control ###
+1. add component in App.vue
+2. add in html form
+3. set `dataSwtich` in `data()` as `false`
+4. add `<app-switch v-model="dataSwitch"></app-switch>`
+5. Set up value prop in `Swtich.vue` and emit input event
+6. put `@click=switched(true)` handler in component template and set class depending on reactive :`value` property
+7. add `methods.switched()` property
+8. go back to main component with sanity output
+
+### 11-153 - submitting a form ###
+- handled the data in the main component's `submitted()` method
+
+### 11-154 - wrap up ###
 ----
 
 ## Module 12 of 24 - Using and creating directives ##
 
+
 ### 12-156 - Module Introduction ###
+- built-in directives prefixed with `-` like `<component v-bind:`
+
+### 13-157 - Understanding directives ###
+- Built-in directive `v-for`, `v-bind`
+- the name follows after `v-`
+- eg. `<p v-html='<strong>hi</strong>'></p>`
+- Register it in app.js with `Vue.directive('highlight');`
+
+ 
+### 13-158 - 5 hook functions ###
+- https://vuejs.org/v2/guide/custom-directive.html#Hook-Functions 
+- are like lifecycle hooks
+- `bind(el, binding, vnode)` - once directive is attached
+- `inserted(el, binding, vnode)` - once inserted in the parent node
+- `updated(el,binding,vnode, oldVnode)`
+- componentupdated
+- unbind
+
+### 13-159 - creating a simple directive ###
+- create a global directive
+ 
+### 13-160 - passing values to custom directives ###
+- whatever we enter between quotes, is the value of the binding
+
+### 13-161 - passing arguments to custom directives ###
+- `if (binding.arg == 'background') el.style.backgroundColor = binding.value`
+- eg. `<p v-highlight:background='red'></p>`
+ 
+### 13-162 - modifiers ###
+
+### 13-163 - a summary ###
+
+### 13-164 - a local directive ###
+- add directive property to the component
+
+### 13-165 - using multiple modifiers - blink ###
+- `let` is the es6 block scope to define new variable
+- `setInterval(()=> {// logic for blinking here},1000);` 
+ 
+### 13-166 - passing more complex values to directives ###
+-  https://vuejs.org/v2/guide/custom-directive.html#Object-Literals
+- can pass in an object as a value
+
+### 13-167 - wrap up ###
 
 ----
 
-## Module 13 of 24 - Improving your App with Filters and Mixins ##
 
-### 13-169 - Module Introduction ###
+## Module 13 of 24 - Improving your App with Filters and Mixins ##
+- https://vuejs.org/v2/guide/filters.html
+
+### 13-169 - module intro  ###
+- really help to structure your app 
+
+### 13-170 - creating a local filter  ###
+- a small syntax feature to transform output in the data, in the template
+- doesn't transform the data itself, just what the user sees
+- vuejs doesn't ship with built in filters
+- add filters property to vue instance
+- `{{text | toUpperCase }}`
+
+### 13-171 - global filters and how to chain   ###
+- `Vue.filter('to-lowercase', function(label) {return value.toLowerCase();})`
+
+
+### 13-172 - an often-better alternative with computed properties   ###
+- better for more complex filtering
+- only calculate if input changes - so its very performant
+- vuejs will create its own variable (computed properties)
+-  can do simplistic search in an array
+ 
+### 13-173 - understanding mixins   ###
+- https://vuejs.org/v2/guide/mixins.html
+- 
+### 13-174 - creating and using mixins   ###
+- abstract out to separate file to allow us to share code
+- `import { fruitMixin } from './fruitMixin';`
+- `export default { mixins: [fruitMixin] }` 
+- ie. register mixins in the components where we want to use them
+
+### 13-175 - How mixins get merged   ###
+
+- vue adds code from existing mixin to existing vue instance
+- both code in a mixin lifecycle hook and vue instance will be run
+- the mixin is not be able to destroy anything
+- component always has control
+
+### 13-176 - Global mixins (special case)   ###
+- a global mixin is added to every instance and compoenent and in the most case, this is prbably not what you want unless you want to create third-party apps
+
+### 13-177 - mixins and scope   ###
+- is the data in the mixin. is the object actually shared? or is a new instance created. Not shared, it's replicated
+- safe for us to access data and mainuplate it without affecting the data. If you want to do this, use event bus
+- could just use a normal JS object and import it
+
+### 13-178 - wrap up   ###
+- filters - `Vue.filter()` or register locally
+- limitations: use computed properties for more complex operations and use mixins to share them
+- share code with mixins to avoid code duplication
+- and get separate copy of mixin for each component where you added
 
 ----
 
 ## Module 14 of 24 - Animations and Transitions ##
 
+- Half way through lessons count!!
+ 
 ### 14-180 - Module Introduction ###
+
+### 14-181 - understanding transitions ###
+- can animate attaching/removal to/from the DOM
+- vuejs offeres the `<transition>` element
+
+### 14-182 - preparing code to use transitions ###
+- animating anything within the `<transition>` tag
+- can only animate 1 element
+
+### 14-183 - setting up a transition ###
+- attaches CSS class that vue does automatically
+- vuejs sniffs your css code to inspect animation properties
+ 
+### 14-184 - assigning CSS classes ###
+- https://vuejs.org/v2/guide/transitions.html 
+
+### 14-185 - creating a fade transition with css transition property ### 
+
+### 14-186 - creating a slide transition with CSS animation property ### 
+- use animation instead of `<transition>`
+
+### 14-187 - mix transition and animation properties ### 
+
+### 14-189 - setting up on initial (on-load) Animation ### 
+
+### 14-190 - animate.css ### 
+- https://daneden.github.io/animate.css/
+- can overwrite default classes with `enter-class="name-we-choose"`
+
+### 14-191 - using dynamic names and attributes  ### 
+- use a select for the animation type
+- using dynamic binding with `<transition :name='alertAnimation'>` like normal HTML attributes
+
+### 14-192 - transitioning between multiple elements (theory)   ### 
+
+### 14-193 - transitioning between multiple elements (practice)  ### 
+- `v-show` will not work, must use `v-if`
+- must use `key` attribute that is recognised by vuejs
+- `mode='out-in'` 
+
+### 14-194 - listening to transitiion event hooks  ### 
+- https://vuejs.org/v2/guide/transitions.html#JavaScript-Hooks
+- use JavaScript instead of CSS for animating
+- the `<transition>` element emits events so we can listen to it
+
+### 14-195 - understanding JavaScript animations  ### 
+- `<transition @before-enter='beforeEnter' ... >`:w
+
+### 14-196 - Excluding CSS from your Animation   ### 
+- `:css="false"` don't look for css classes
+ 
+### 14-197 - creating an animation in javascript   ### 
+- in `enter(el, done){}`
+ 
+### 14-198 - animating dynamic components    ### 
+- import dangerAlert and dangerSuccess components
+- toggling between the two components
+
+### 14-199 - animating lists with transition-group      ### 
+- https://vuejs.org/v2/guide/transitions.html#List-Transitions
+ 
+### 14-200 - using transition-group ### 
+- get random index with `Math.floor(Math.random() * this.numbers.length)`
+ 
+### 14-201 - using transition-group to animate a list ### 
+- works just like transition
+- https://vuejs.org/v2/guide/transitions.html#List-Move-Transitions
+ 
+### 14-202 - understanding the app ### 
+
+### 14-203 - creating the app ### 
+- transitioning between components
+
+### 14-204 - Adding Animations ### 
+- `transform: rotateY(90 deg);`
+
+### 14-205 - Wrap up ### 
 
 ----
 
