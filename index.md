@@ -14,6 +14,7 @@
 * [Bash & Command Line](Line.md)
 * [PHP](PHP)
 * [JS](JS)
+* [GraphQL](GraphQL)
 
 ## Databases ##
 * [postgres](postgres.md)
