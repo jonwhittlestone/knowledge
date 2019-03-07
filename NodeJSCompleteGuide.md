@@ -1,12 +1,67 @@
 # NodeJS - The Complete Guide
 
-My notes on the Max's course
+My notes on Max's course
+
+- python vs. javscript syntax comparison: https://goo.gl/fS9Hhw
 
 ---
 
 ## Module 02. Optional JavaScript - a quick refresher
 
+- 12 concepts that will level up your js skills https://goo.gl/iEeDqC
+
 ### 02-009 Module Intro
+### 02-010 JavaScript in a nutshell
+### 02-011 The Core Syntax
+
+### 02-012 let const
+- use `let` instead of `var` because we have..
+- `const` to assign a variable that never changes to be clear about our intentions
+
+
+### 02-013 Understanding arrow functions
+- `const summarizeUser = (p1, p2) => {//definition in function body};`
+- use `this`
+- can be simplified even more if there is just one return statement 
+
+### 02-014 Objects
+- how to write a function in an object
+ 
+### 02-015 Arrays/arrays methods
+- `map()` allows you to transform an array  and returns a new array `newArray = existingArray.map(hobby => { return 'Hobby: ' + hobby })`
+- or just
+- `newArray = existingArray(hobby=> 'Hobby' + hobby)`
+
+
+### 02-016 array objects reference types
+- reference types only store a pointer to an address in memory and so a `const` can be added to 
+- not really editing the `const` thing, just the thing it's ponting at
+
+
+### 02-017 spread/rest operators
+- to avoid errors where we copy/duplicate the array and add the new thing, 
+- `hobbies.slice()` just copies the array and can narrow down the range of things you wish to copy
+- instead of `slice()`, spread operator, `const copiedArray = [...hobbies]; `
+- ^ this unwraps everything in hobbies into the new array
+- rest operator is called when used to merge multiple elements into an array (like in a function definition)
+
+
+### 02-018 destructuring
+- object destructuring
+- add curly braces in the argument list, so the property will pulled out of the object
+- as seen in vue store
+- syntax for understandable code where we are clear about the incoming object and its use
+- `const printName = ({name}) => {console.log(name); }`
+- or can just use in an array
+- `const {name, age } = hobbies;`
+
+### 02-019 Async code, promises
+- setTimeout example is async code since it doesn't finish immediately
+- the only limitation with synchronous code is your hardware
+- js doesn't block code execution 
+- manual promise creation (most packages do this for you)
+- if the function returns a promise object, when calling the function, you can then chain `then()` statements and makes it more readable than callbacks
+- another way to manage this is async/await
 
 ---
 

@@ -1103,27 +1103,34 @@
 ### 16-241 - animating route transitions
 
 <<<<<<< HEAD
+
 - can wrap a `<router-view>` in a `<transition>` blocks
 
 ### 16-242 - passing the hash fragment
-=======
-----
-## Module 19 of 24 - Deploying ##
+
+## =======
+
+## Module 19 of 24 - Deploying
+
 - deploy to Amazon S3
 
-### 19-300 - Preparing for Deployment ###
+### 19-300 - Preparing for Deployment
+
 - `npm run build`
 - see `src/webpack.config.js`
 
-### 19-301 - Deploying the App ###
+### 19-301 - Deploying the App
+
 - create bucket, static site policy, upload `index.html` and `dist/` along with js bundle
 - redirect 404 errors to index.html so vuejs can handle
->>>>>>> cd6652b073ad2238927fb06d2b17e5632b54ce6a
+
+  > > > > > > > cd6652b073ad2238927fb06d2b17e5632b54ce6a
 
 - may want to control, where the page scrolls to
 - https://goo.gl/UM6uCv
 
 <<<<<<< HEAD
+
 ### 16-243 - controlling the scroll behaviour
 
 - `scrollBehaviour(to, from, savedPosition)`{}
@@ -1132,14 +1139,17 @@
 
 ### 16-244 - Protecting routes with guards
 
-- vue gives us two checks, before we want to go to a route, and when we want to leave a route
-=======
-----
-## Module 21 of 24 - All course exercies ##
+- # vue gives us two checks, before we want to go to a route, and when we want to leave a route
 
-----
-## Module 22 of 24 - Axios ##
->>>>>>> cd6652b073ad2238927fb06d2b17e5632b54ce6a
+---
+
+## Module 21 of 24 - All course exercies
+
+---
+
+## Module 22 of 24 - Axios
+
+> > > > > > > cd6652b073ad2238927fb06d2b17e5632b54ce6a
 
 ### 16-245 - use `beforeEnter()` guard
 
@@ -1150,16 +1160,22 @@
 - or can check on the component itself but be sure to call `next()` https://goo.gl/pC9CkK
 
 <<<<<<< HEAD
-### 16-246 - using the beforeLeave guard
-=======
-### 22-331 - What is Axios ###
-- an alternative to vue-resource
- 
-### 22-332 - Project setup ###
 
-----
-## Module 23 of 24 - Authentication ##
->>>>>>> cd6652b073ad2238927fb06d2b17e5632b54ce6a
+### 16-246 - using the beforeLeave guard
+
+=======
+
+### 22-331 - What is Axios
+
+- an alternative to vue-resource
+
+### 22-332 - Project setup
+
+---
+
+## Module 23 of 24 - Authentication
+
+> > > > > > > cd6652b073ad2238927fb06d2b17e5632b54ce6a
 
 - check if the user is allowed to leave a route
 - https://goo.gl/2Bt4ti
@@ -1336,6 +1352,20 @@
 ## Module 22 of 24 - Axios
 
 ### 22-330 - About this section
+
+### 22-332 - Project Setup
+
+### 22-333 - Axios Setup
+
+### 22-334 - Sending a POST request
+
+### 22-335 - Sending a GET request
+
+### 22-337 - Setting a Global request configuration
+
+### 22-338 - Interceptors for request and response
+
+- Can manipulate the request configuration 'on the fly'
 
 ---
 
