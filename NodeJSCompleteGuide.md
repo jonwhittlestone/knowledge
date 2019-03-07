@@ -11,42 +11,47 @@ My notes on Max's course
 - 12 concepts that will level up your js skills https://goo.gl/iEeDqC
 
 ### 02-009 Module Intro
+
 ### 02-010 JavaScript in a nutshell
+
 ### 02-011 The Core Syntax
 
 ### 02-012 let const
+
 - use `let` instead of `var` because we have..
 - `const` to assign a variable that never changes to be clear about our intentions
 
-
 ### 02-013 Understanding arrow functions
+
 - `const summarizeUser = (p1, p2) => {//definition in function body};`
 - use `this`
-- can be simplified even more if there is just one return statement 
+- can be simplified even more if there is just one return statement
 
 ### 02-014 Objects
+
 - how to write a function in an object
- 
+
 ### 02-015 Arrays/arrays methods
-- `map()` allows you to transform an array  and returns a new array `newArray = existingArray.map(hobby => { return 'Hobby: ' + hobby })`
+
+- `map()` allows you to transform an array and returns a new array `newArray = existingArray.map(hobby => { return 'Hobby: ' + hobby })`
 - or just
 - `newArray = existingArray(hobby=> 'Hobby' + hobby)`
 
-
 ### 02-016 array objects reference types
-- reference types only store a pointer to an address in memory and so a `const` can be added to 
+
+- reference types only store a pointer to an address in memory and so a `const` can be added to
 - not really editing the `const` thing, just the thing it's ponting at
 
-
 ### 02-017 spread/rest operators
-- to avoid errors where we copy/duplicate the array and add the new thing, 
+
+- to avoid errors where we copy/duplicate the array and add the new thing,
 - `hobbies.slice()` just copies the array and can narrow down the range of things you wish to copy
-- instead of `slice()`, spread operator, `const copiedArray = [...hobbies]; `
+- instead of `slice()`, spread operator, `const copiedArray = [...hobbies];`
 - ^ this unwraps everything in hobbies into the new array
 - rest operator is called when used to merge multiple elements into an array (like in a function definition)
 
-
 ### 02-018 destructuring
+
 - object destructuring
 - add curly braces in the argument list, so the property will pulled out of the object
 - as seen in vue store
@@ -56,9 +61,10 @@ My notes on Max's course
 - `const {name, age } = hobbies;`
 
 ### 02-019 Async code, promises
+
 - setTimeout example is async code since it doesn't finish immediately
 - the only limitation with synchronous code is your hardware
-- js doesn't block code execution 
+- js doesn't block code execution
 - manual promise creation (most packages do this for you)
 - if the function returns a promise object, when calling the function, you can then chain `then()` statements and makes it more readable than callbacks
 - another way to manage this is async/await
@@ -68,6 +74,131 @@ My notes on Max's course
 ## Module 03. Understanding the basics
 
 ### 03-023 Module Intro
+
+### 03-024 How the Web works
+
+### 03-025 Creating a node server
+
+- create in `app.js`
+- core modules: http(s)/fs/path/os
+- explanation of event-driven architechture where you pass function or anonymous function to `http.createServer()` where we define the `RequestListener`
+- can also use an arrow function eg
+
+```
+  const server = http.createServer((req,res) => {
+
+  });
+```
+
+### 03-026 Node.js program lifecycle
+
+- the event loop which keeps on runing as long as there are event listeners registered
+- ie. we didn't unreigster from the incoming request listener, and `RequestListener` is ongoing
+- the entire node process uses one thread
+- unregister with `process.exit()` hard exited our event loop
+
+### 03-028 Understanding requests
+
+### 03-029 Sending responses
+
+- using `res.write('<html>')`
+- easier with expressjs
+
+### 03-031 Routing requests
+
+- using a conditional on `res.url`
+- must `return res.end()` so we exit out of anonymou function and unregister from request listener
+
+### 03-032 Redirecting requests
+
+- uses `fs` module for a given url route and writes to the filesystem and then redirects with `res.setHeader('Location','/')`
+
+### 03-033 Parsing request bodies
+
+- streams & buffers explanation
+- request is read in chunks until fully parsed - the benefit of this is when data is incoming, the entire file doesn't have to be parsed before we can start doing things with it
+- A buffer organises these chunks (analagous to bus stops) to hold multiple chunks
+
+- we create an event listener on our own, we listen for `data` event which fires when a new chunk is ready to be read
+
+```
+  if (url === '/message' && method === 'POST') {
+    const body = [];
+    req.on('data', (chunk) => {
+      console.log(chunk);
+      body.push(chunk);
+    });
+    req.on('end', () => {
+      const parsedBody = Buffer.concat(body).toString();
+      const message = parsedBody.split('=')[1];
+      fs.writeFileSync('message.txt', message);
+    });
+    res.statusCode = 302;
+    res.setHeader('Location', '/');
+    return res.end();
+  }
+```
+
+### 03-034 Understanding Event Driven Code Execution
+
+- order of execution is not necessarily the order in which you write it
+- nodejs uses a pattern where you pass in a function to a function and node will execute the passed-in functions at a later point in time (asynchronously)
+- can register code (in node's internal registry) to be run at some point in the future, but not necessarily right now
+- this means node doesn't need to pause and is free to handle other incoming requests
+
+### 03-035 Blocking and Non-Blocking code
+
+- `writeFileSync()` is the synchronous code where we block execution until the file is written
+- better to use `writeFile()` where you can specify a callback as third argument for code to execute when it's done
+- refactored to:
+
+```
+  if (url === '/message' && method === 'POST') {
+    const body = [];
+    req.on('data', chunk => {
+      console.log(chunk);
+      body.push(chunk);
+    });
+    return req.on('end', () => {
+      const parsedBody = Buffer.concat(body).toString();
+      const message = parsedBody.split('=')[1];
+      fs.writeFile('message.txt', message, err => {
+        res.statusCode = 302;
+        res.setHeader('Location', '/');
+        return res.end();
+      });
+    });
+  }
+```
+
+- nodejs is high performance as it never blocks main code execution, never blocks server, just tells the operating system 'do this, do that'
+
+### 03-036 Looking behind the scenes
+
+- Single Thread, Event Loop & Blocking Code
+- The event loop that handles all the callback and is started by nodejs
+  - checks if any timers running like `setTimeout` and `setInterval`
+  - are there any pending callbacks
+  - poll phase where nodejs looks for new I/O events
+  - close event callbacks
+- we may end event look with `process.exit`
+- `refs` is the count of open callbacks
+
+### 03-037 Using the node modules system
+
+- how to connect multiple files
+
+- exporting in nodejs with `module.exports = requestHandler;` at the end of the file
+- split our code over two files
+- or `module.exports.handler = requestHandler` so there is only one `module.exports`
+- new nodejs syntax `exports.handler = requestHandler`
+
+### 03-038 Summary
+
+- Program Lifecycle: non-blocking JS code and uses event-driven code for running logic
+- loop keeps waiting for new events and dispatches some action to the OS
+- Async code: register some code to be executed in the future instead of blocking the main thread.
+- Parse request data in chunks
 
 ---
 
