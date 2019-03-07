@@ -206,9 +206,44 @@ My notes on Max's course
 
 ### 04-040 Intro
 
+### 04-041 Understanding NPM scripts
+
+- can use an npm file like a `MAKE` file to do `npm run {script name}`
+
+### 04-042 Installing 3rd Party Packages
+
+- auto-restart mechanism with `npm install nodemon --save-dev`
+
+### 04-044 Using nodemo for autorestarts
+
+### 04-046 Types of Errors
+
+### 04-047 - Finding fixing syntax errors
+
+### 04-048 - Dealing with runtime errors
+
+- when we don't `return` from callbacks
+- scroll to top of error message and read it
+- Look at the code before the offending line number
+
+### 04-049 - Dealing with logical errors
+
+- node.js debugger with vscode integration
+
+### 04-050 - Using the debugger
+
+### 04-051 - Restarting the debugger
+
+- to restart the debugger if we change our code, add a configuration in `launch.json`
+- `"restart": true`
+- `"runtimeExecutable": "nodemon"`
+- add nodemon globally
+
+### 04-053 - changing variables in the debug console
+
 ---
 
-## Module 05. Working Express.js
+## Module 05. Working with Express.js
 
 ### 05-056 Intro
 
