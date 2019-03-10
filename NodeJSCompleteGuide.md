@@ -247,6 +247,138 @@ My notes on Max's course
 
 ### 05-056 Intro
 
+### 05-057 What is Express
+
+### 05-058 Installing express
+
+- `app` is a valid request handler
+
+```
+const app = express();
+
+const server = http.createServer(app);
+```
+
+### 05-059 adding middleware
+
+- the incoming request is automatically funelled through multiple functions until you send a response
+- this pluggable nature of express means you can easily add 3rd party packages
+
+- after creating the app object, call a method `use` which allows us to add a new middleware function
+
+```
+  //
+  app.use((req, res, next)) => {
+
+      // must be included so the
+      // next middleware can be applied
+      // otherwise, it will die and not progress
+      next();
+
+  });
+```
+
+- use `next()` to progress program flow to the next middleware function, or send a response
+
+### 05-060 How middleware works
+
+- send a response with an express utility function `res.send()`
+
+### 05-061 Expressjs looking behind the scenes
+
+- github
+
+### 05-062 Handling different routes
+
+- filter for different requests to different urls
+- docs: https://expressjs.com/en/4x/api.html#app.use
+
+- can order the below depending on what routes we wish to catch with filter (order of precendence) to funnel requests to the desired place
+
+```
+app.use('/add-product',(req, res, next) => {
+  res.send('<h1>Add Product Page</h1>');
+});
+```
+
+### 05-063 Parsing incoming requests to ext
+
+- convinience function for redirect
+- `npm install --save body-parser`
+- `app.user(bodyParser.urlencoded(extended:false))`
+- this is simpler than our custom approach we used before
+
+### 05-064 Limiting middleware to POST requests
+
+- another form of filtering
+
+```
+app.post('/product',(req, res, next) => {
+  console.log(req.body);
+});
+```
+
+### 05-065 Using express router
+
+- often-used convention is to put routing related code in a `/routes` folder
+- `const router = express.Router();`
+- can then use
+
+```
+router.get('/add-product', (req, res, next) => {
+  console.log('do stuff with this valid middleware function');
+});
+module.exports = router;
+```
+
+### 05-066 Adding a 404 error page
+
+- if nodejs doesn't find a middleware to execute, we make it to the botttom and the request must be handled by a catch all filter
+
+```
+app.use((req,res, next) => {
+  res.status(404).send('<h1>page not found</h1>');
+});
+```
+
+### 05-067 filtering paths
+
+- a common starting segment of the url (eg. `/admin/') can be added to the`use` so it doesn't have to be repeated and in the oursourced js route file, it is then implict
+
+### 05-068 creating HTML pages
+
+- change to rendering from `/views` folder
+
+### 05-069 Serving HTML pages
+
+- `res.sendFile()`
+
+```
+  res.sendFile(
+    path.join(__dirname, '../', 'views', 'shop.html)
+  );
+```
+
+### 05-070 returing a 404 page
+
+### 05-071 Using a helper function for navigation
+
+- create a helper in `/util` to get the `rootDir` to get path to the root file
+- use global `process` variable that is available in all files
+
+### 05-072 styling
+
+- flexbox for stying `<li>` next to each other
+
+### 05-073 serving files statically
+
+- use external css files in `/css` directly forwarded to the filesystem
+- similar to registering static middleware `app.use(express.static('/public'));`
+
+### 05-074 wrap up
+
+- Express.js is a Node.js framework - a package that adds a bunch of utility functions and tools an a slear set of rules on how the app should be built ('middleware')
+
 ---
 
 ## Module 06. Working with Dynamic Content Adding templating options
