@@ -385,6 +385,16 @@ app.use((req,res, next) => {
 
 ### 06-076 Module Intro
 
+### 06-077 sharing data accross requests
+
+- this method is data that exists on the node server and is shared across all requests, typically won't want this but good for demonstrating
+
+### 06-078 Templating Engines
+
+- EJS / Pug / Handlebars
+
+### 06-079 Installing Pug
+
 ---
 
 ## Module 07. The Model View Controller
