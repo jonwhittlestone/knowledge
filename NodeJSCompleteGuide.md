@@ -381,7 +381,7 @@ app.use((req,res, next) => {
 
 ---
 
-## Module 06. Working with Dynamic Content Adding templating options
+## M06. Adding Dynamic Content & Templating options
 
 ### 06-076 Module Intro
 
@@ -395,9 +395,59 @@ app.use((req,res, next) => {
 
 ### 06-079 Installing Pug
 
+### 06-080 Outputting Dynamic content
+
+- bind the products to the prods key in the render method
+
+```
+  res.render('shop', {
+    prods: products,
+    pageTitle: 'Shop',
+    path: '/',
+    hasProducts: products.length > 0,
+    activeShop: true,
+    productCSS: true
+  });
+```
+
+- use pug to output single values, conditionally output with if/else, or loop through
+
+### 06-081 - Converting HTML files to pug templates
+
+### 06-082 - Adding a layout
+
+- using `block content`
+
+### 06-083 - Adding a layout
+
+### 06-084 - Finishing pug layout
+
+- setting `active` class
+
+### 06-085 - working with handlebars
+
+- `.hbs` extension
+
+### 06-086 - Converting project to handlebars
+
+### 06-087 - Adding layout file to hbs
+
+### 06-088 - working with EJS
+
+- syntax: `<%= pageTitle %>`
+- can use javascript in the template
+
+### 06-089 - working on the layout with partials
+
+- shared includes in `includes/` sub directory
+
+### 06-090 - wrap up
+
+- Must specify/register render engine
+
 ---
 
-## Module 07. The Model View Controller
+## M07. MVC
 
 ### 07-093 Intro
 
