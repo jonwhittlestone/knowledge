@@ -6,7 +6,7 @@ My notes on Max's course
 
 ---
 
-## Module 02. Optional JavaScript - a quick refresher
+## M02. Optional JavaScript - a quick refresher
 
 - 12 concepts that will level up your js skills https://goo.gl/iEeDqC
 
@@ -71,7 +71,7 @@ My notes on Max's course
 
 ---
 
-## Module 03. Understanding the basics
+## M03. Understanding the basics
 
 ### 03-023 Module Intro
 
@@ -202,7 +202,7 @@ My notes on Max's course
 
 ---
 
-## Module 04. Improved dev workflow and debugging
+## M04. Improved dev workflow and debugging
 
 ### 04-040 Intro
 
@@ -243,7 +243,7 @@ My notes on Max's course
 
 ---
 
-## Module 05. Working with Express.js
+## M05. Working with Express.js
 
 ### 05-056 Intro
 
@@ -385,7 +385,7 @@ app.use((req,res, next) => {
 
 ### 06-076 Module Intro
 
-### 06-077 sharing data accross requests
+### 06-077 sharing data across requests
 
 - this method is data that exists on the node server and is shared across all requests, typically won't want this but good for demonstrating
 
@@ -449,35 +449,201 @@ app.use((req,res, next) => {
 
 ## M07. MVC
 
-### 07-093 Intro
+### 07-092 Intro
+
+### 07-093 What is MVC
+
+- in an Express App, controllers can be split up accross middleware
+
+### 07-094 - Adding Controllers
+
+- in `controllers/products.js` folder:
+
+```
+exports.getAddProduct = (req, res, next) => {
+  res.render('add-product', {
+    pageTitle: 'Add Product',
+    path: '/admin/add-product',
+    formsCSS: true,
+    productCSS: true,
+    activeAddProduct: true
+  });
+};
+```
+
+- In respective route file: `require` the controller
+
+```
+const productsController = require('../controllers/products');
+```
+
+### 07-095 - Finishing the controllers
+
+- creating an error controller `get404`
+- use it from `app.js` with `app.use(errorController.get404)`
+
+### 07-096 - Adding a Product Model
+
+- Represents a single product entity in `models/product.js` by storing in an ES6 class
+
+```
+
+module.exports = class Product {
+  constructor(t) {
+    this.title = t;
+  }
+
+  save() {
+    getProductsFromFile(products => {
+      products.push(this);
+      fs.writeFile(p, JSON.stringify(products), err => {
+        console.log(err);
+      });
+    });
+  }
+
+  static fetchAll(cb) {
+    getProductsFromFile(cb);
+  }
+};
+```
+
+- `require` it from the controller and then instantiate in the relevant controller action
+
+```
+const Product = require('../models/product');
+```
+
+### 07-097 - Store data in files via model
+
+- create a basic `save()` method in the model in which
+
+  1. a data file containing json is read into memory
+  2. the json is parsed into memory
+  3. the data is pushed onto that products array
+  4. data is saved back into the file via the `stringify` method
+
+- code for above:
+
+```
+// models/product.js
+...
+
+  save() {
+    const p = path.join(
+      path.dirname(process.mainModule.filename),
+      'data',
+      'products.json'
+    );
+
+    // step 1
+    fs.readFile(p, (err, fileContent) => {
+      let products = [];
+      if (!err) {
+        // step 2
+        products = JSON.parse(fileContent);
+      }
+      // step 3
+      products.push(this);
+      // step 4
+      fs.writeFile(p, JSON.stringify(produts));
+      });
+  }
+```
+
+- to ensure `this` refers to the product (the class), an arrow function should be used or `this` will lose itso context and not refer to the class anymore
+
+- `static fetchAll() {}` is modified so that it reads from the file system
+
+### 07-098 - Fetching data from files via the model
+
+- The problem with having async code for `readFile()` in `fetchAll()` is that data won't be returned because it is just registers the callback in its event emitter registry
+- the way around this is to accept a callback for `fetchAll` where the callback function is executed once it is done
+
+```
+  static fetchAll(cb) {
+    fs.readFile(p, (err, fileContent) => {
+      let products = [];
+      if (err) {
+        return cb([]);
+      }
+      cb(JSON.parse(fileContent));
+      });
+  }
+```
+
+- Where it is being called, in the controller, pass in a callback function to say that when I eventually get my products, do more stuff
+
+```
+// controllers/products.js
+
+  Product.fetchAll(products => {
+    res.render('shop', {
+      prods: products,
+      pageTitle: 'Shop',
+      path: '/',
+      hasProducts: products.length > 0,
+      activeShop: true,
+      productCSS: true
+    });
+```
+
+- ie. `fetchAll` takes a function it should execute once it's done
+
+### 07-099 - Refactoring the file storage code
+
+- Define an empty function
+
+```
+  const getProductsFromFile = () => {
+
+  }
+```
+
+- create an anonymous function in `save()` where I know we will get the products
+
+```
+save() {
+  getProductsFromFile(products => {
+    // then put in code where we append a new product and save to filesystem
+    products.push(this);
+    fs.writeFile(p, JSON.stringify(products), err => {
+      console.log(err);
+    });
+  });
+}
+
+```
+
+### 07-0100 - Wrap up on mvc
 
 ---
 
-## Module 08. Optionally Enhancing the App
+## M08 Enhancing the App
 
 ### 08-102 Intro
 
 ---
 
-## Module 09. Dynamic Routes Advanced Modules
+## M09. Dynamic Routes Advanced Modules
 
 ### 09-111 Intro
 
 ---
 
-## Module 10. SQL Introduction
+## M10. SQL
 
 ### 10-131 Intro
 
 ---
 
-## Module 11. Understanding Sequelize
+## M11. Understanding Sequelize
 
 ### 11-145 Intro
 
 ---
 
-## Module 12. Working with NoSQL using MongoDB
+## M12. NoSQL using MongoDB
 
 ### 12-172 Intro
 
@@ -495,13 +661,13 @@ app.use((req,res, next) => {
 
 ---
 
-## Module 15. Adding Authentication
+## M15. Adding Authentication
 
 ### 15-246 Intro
 
 ---
 
-## Module 16. Sending Emails
+## M16. Sending Emails
 
 ### 16-266 Intro
 
