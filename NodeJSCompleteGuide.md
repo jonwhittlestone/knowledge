@@ -3,6 +3,7 @@
 My notes on Max's course
 
 - python vs. javscript syntax comparison: https://goo.gl/fS9Hhw
+- A lot of the Express' typical web framework patterns are the same as for Laravel and Django
 
 ---
 
@@ -647,6 +648,101 @@ save() {
 
 ### 09-111 Intro
 
+- passing route and query params
+
+### 09-112 Prep
+
+### 09-114 Adding product ID to the path
+
+- from view ..
+
+### 09-115 Extracting ID
+
+- extract with `const prodId = req.body.productId`
+
+### 09-116 Loading Product detail data
+
+- add model method `findById(id,cb)`
+- the callback will be executed once we're done finding the product
+- in `getProductsForFile` before we return products, filter out the one product whose id matches the argument id
+  (using javascript `find()` method)
+
+### 09-117 Rendering the product detail data
+
+### 09-118 Passing data with POST requests
+
+- route accepts POST request with `router.post('/cart', shopController.postCart);`
+- `add-to-cart.ejs` is an include that can be included in other partials
+
+### 09-119 Adding a cart model
+
+- start with
+
+```
+  module.exports = class Cart {
+    // allows to instantiate
+    constructor() {}
+  }
+```
+
+- and add logic for class method `static addProduct()`
+- use javscript spread operator to create new object from `existingProduct` into `updatedProduct` (and then the quantity is set to the old quanitity plus one)
+- in controller action, use utility class method `Cart.addProduct(prodId, product.price)`
+
+### 09-120 Query Parameters (for editing)
+
+- get from query string with `const prodId = req.params.productId;`
+- use `editing` template variable so can populate form data with product data
+
+### 09-121 Pre-populating the page with data
+
+### 09-122 Linking to the edit page
+
+### 09-123 Editing the product data
+
+- conditionally include the `product.id` as a hidden input variable
+
+### 09-124 Adding the Product Delete functionality
+
+### 09-125 Deleting cart items
+
+- `static deleteProduct(id, productPrice) {}` in `cart.js`
+
+### 09-126 Displaying cart items on the cart page
+
+- working with a lot of depending async actions can be simplified rather than multiple callbacks
+- ie. see controller action:
+
+```
+
+exports.getCart = (req, res, next) => {
+  Cart.getCart(cart => {
+    Product.fetchAll(products => {
+      const cartProducts = [];
+      for (product of products) {
+        const cartProductData = cart.products.find(
+          prod => prod.id === product.id
+        );
+        if (cartProductData) {
+          cartProducts.push({ productData: product, qty: cartProductData.qty });
+        }
+      }
+      res.render('shop/cart', {
+        path: '/cart',
+        pageTitle: 'Your Cart',
+        products: cartProducts
+      });
+    });
+  });
+};
+```
+
+### 09-127 Delete from cart
+
+### 09-128 Fixing a delete product bug
+
+### 09-129 Wrap up
+
 ---
 
 ## M10. SQL
@@ -697,78 +793,78 @@ save() {
 
 ---
 
-## Module 18. Understanding validation
+## M18. Validation
 
 ### 18-284 - Intro
 
 ---
 
-## Module 19. Error Handling
+## M19. Error Handling
 
 ### 19-301 Intro
 
 ---
 
-## Module 20. File Upload Download
+## M20. File Upload Download
 
 ### 20-314 Intro
 
 ---
 
-## Module 21. Adding Pagination
+## M21. Adding Pagination
 
 ### 21-333 Intro
 
 ---
 
-## Module 22. Understanding Async Requests
+## M22. Understanding Async Requests
 
 ### 22-342 Intro
 
 ---
 
-## Module 23. Adding Payments
+## M23. Adding Payments
 
 ### 23-349 Intro
 
 ---
 
-## Module 24. Working with REST APIs - The Basics
+## M24. Working with REST APIs - The Basics
 
 ### 24-354 Intro
 
 ---
 
-## Module 25. Working with REST APIs - The Practical Application
+## M25. Working with REST APIs - The Practical Application
 
 ### 25-365 Intro
 
 ---
 
-## Module 26. Understanding Async Await in Node.js
+## M26. Understanding Async Await in Node.js
 
 ### 26-394 Intro
 
 ---
 
-## Module 27. Understanding Websockets Socket.io
+## M27. Websockets Socket.io
 
 ### 27-400 Intro
 
 ---
 
-## Module 28. Working GraphQL
+## M28. GraphQL
 
 ### 28-414 Intro
 
 ---
 
-## Module 29. Deploying our App
+## M29. Deploying our App
 
 ### 29-442 Intro
 
 ---
 
-## Module 30. Node.js as a Build Tool using NPM
+## M30. Node.js as a Build Tool using NPM
 
 ### 30-458 Intro
