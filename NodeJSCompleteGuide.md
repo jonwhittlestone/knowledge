@@ -623,6 +623,24 @@ save() {
 
 ### 08-102 Intro
 
+- Adding just more views/controllers so mainly copy/pasting code
+
+### 08-103 Creating the shop structure
+
+### 08-104 Navigation
+
+### 08-105 Registering routes
+
+### 08-106 Storing product data
+
+- adding more properties to `Product` class
+
+### 08-107 Displaying product data
+
+### 08-108 Editing / Deleting products links
+
+### 08-109 Adding another item
+
 ---
 
 ## M09. Dynamic Routes Advanced Modules
@@ -649,13 +667,13 @@ save() {
 
 ---
 
-## Module 13. Working with Mongoose
+## M13. Mongoose ODM
 
 ### 13-205 Module Introduction
 
 ---
 
-## Module 14. Sessions Cookies
+## M14 Sessions
 
 ### 14-226 Intro
 
@@ -673,7 +691,7 @@ save() {
 
 ---
 
-## Module 17. Advanced Authentication
+## M17. Advanced Authentication
 
 ### 17-272 Intro
 
