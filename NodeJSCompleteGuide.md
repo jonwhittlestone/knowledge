@@ -749,6 +749,10 @@ exports.getCart = (req, res, next) => {
 
 ### 10-131 Intro
 
+### 10-132 Choosing a database
+
+- SQL vs. NoSQL
+
 ---
 
 ## M11. Understanding Sequelize
