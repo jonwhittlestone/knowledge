@@ -38,6 +38,29 @@ Collecting thoughts in [index.md](index.md) with vimwiki and Jupyer notebooks
     `pip install jupyterlab; jupyter lab`
     
 
+
+## Running the notebooks
+
+1. Start a python3 virtual environment
+
+    `virtualenv -p python3 venv; source venv/bin/activate`
+
+2. Install jupyter notebook with pip
+
+    `pip install jupyter`
+
+3. Ensure you've globally installed the node plugin,`ijavascript`
+
+    `npm install -g ijavascript`
+
+4. Install the plugin
+
+    `ijsinstall`
+    
+5. Start Jupyter notebook
+
+    `jupyter notebook`
+
 ## Dev-todos on Chrome Start Page
 
 To give the Toodos a bit more visibility, out of Vim, the dev-todos page can be set as a Chrome Start page
