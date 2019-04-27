@@ -1,9 +1,17 @@
 # Knowledge
 
-Collecting thoughts in [index.md](index.md) with vimwiki
+Collecting thoughts in [index.md](index.md) with vimwiki and Jupyer notebooks
 
 
-## Running the notebooks
+## Run a notebook remotely for reference ##
+
+1. Enter details of a notebook in a public repo into [binder](https://mybinder.org/)
+
+    
+    For example: https://github.com/jonwhittlestone/knowledge
+
+
+## Running the notebooks locally
 
 1. Start a python3 virtual environment
 
@@ -24,6 +32,11 @@ Collecting thoughts in [index.md](index.md) with vimwiki
 5. Start Jupyter notebook
 
     `jupyter notebook`
+    
+6. (Optional) Run in [Jupyer lab](https://jupyterlab.readthedocs.io/en/stable/)
+
+    `pip install jupyterlab; jupyter lab`
+    
 
 ## Dev-todos on Chrome Start Page
 
