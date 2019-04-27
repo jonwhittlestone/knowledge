@@ -9,7 +9,7 @@ howappedmarketingspec.md
 archive/
 .vscode
 clients/
-tags
+/tags
 venv
 .ipynb_checkpoint
 .ipynb_checkpoint

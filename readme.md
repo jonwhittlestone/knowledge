@@ -9,6 +9,9 @@ Collecting thoughts in [index.md](index.md) with vimwiki and Jupyer notebooks
 
     
     For example: https://github.com/jonwhittlestone/knowledge
+    
+2. Or just click here<br>
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/jonwhittlestone/knowledge/master)
 
 
 ## Running the notebooks locally
