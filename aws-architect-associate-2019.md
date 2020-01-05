@@ -5,6 +5,7 @@ Exam Date: ?
 ```
 [ ] Complete Handson/Labs on the weekend
   [ ] Deploy gothinkster django B/E and F/E on EBS
+  [ ] Deconstruct components created by EBS & manually create
 [ ] Complete Live Lessons
 [ ] Practice for Exam
 [ ] Schedule Voucher
