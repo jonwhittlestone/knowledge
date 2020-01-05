@@ -3,17 +3,22 @@
 Exam Date: ?
 
 ```
-[ ] Complete Intro qwiklabs
+[ ] Complete Handson/Labs on the weekend
+  [ ] Deploy gothinkster django B/E and F/E on EBS
 [ ] Complete Live Lessons
 [ ] Practice for Exam
 [ ] Schedule Voucher
 [ ] Take Exam!
 ```
+
 ### Resources
 
-- Official Hands on Qwiklabs - [[link]](https://amazon.qwiklabs.com/catalog?keywords=introduction%20to&locale=&format%5B%5D=any&level%5B%5D=any&duration%5B%5D=any&price%5B%5D=free&modality%5B%5D=any&language%5B%5D=any)
 - O'Reilly Live Lessons - Nick Garner [[link]](https://learning.oreilly.com/videos/aws-certified-solutions/9780135229415)
+
+- Official Hands on Qwiklabs - [[link]](https://amazon.qwiklabs.com/catalog?keywords=introduction%20to&locale=&format%5B%5D=any&level%5B%5D=any&duration%5B%5D=any&price%5B%5D=free&modality%5B%5D=any&language%5B%5D=any)
+
 - Sybex Practice Tests Book [[link]](https://learning.oreilly.com/library/view/aws-certified-solutions/9781119558439/toc.xhtml)
+
 - AWS Exam Goals [[link]](https://aws.amazon.com/certification/certified-solutions-architect-associate/)
 ---
 ## Qwiklabs - S3
