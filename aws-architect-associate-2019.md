@@ -3,11 +3,9 @@
 Exam Date: ?
 
 ```
-[ ] Complete Handson/Labs on the weekend
-  [ ] Deploy gothinkster django B/E and F/E on EBS
-  [ ] Deconstruct components created by EBS & manually create
+[ ] Blog post/repo on HA gothinkster app creation and deployment with IAC/Terraform
 [ ] Complete Live Lessons
-[ ] Practice for Exam
+[ ] Exam Practice
 [ ] Schedule Voucher
 [ ] Take Exam!
 ```
@@ -22,11 +20,15 @@ Exam Date: ?
 
 - AWS Exam Goals [[link]](https://aws.amazon.com/certification/certified-solutions-architect-associate/)
 ---
-## Qwiklabs - S3
+## Practical Resources
 
-- [[link]](https://amazon.qwiklabs.com/focuses/8582?catalog_rank=%7B%22rank%22%3A8%2C%22num_filters%22%3A1%2C%22has_search%22%3Atrue%7D&parent=catalog&search_id=4250467)
+- [[Qwiklabs S3 link]](https://amazon.qwiklabs.com/focuses/8582?catalog_rank=%7B%22rank%22%3A8%2C%22num_filters%22%3A1%2C%22has_search%22%3Atrue%7D&parent=catalog&search_id=4250467)
 
-- ARN format:
+- [[AWS Docs Manual VPC]](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html) 
+
+## Q&A from elsewhere
+
+- What is the ARN format?
   - arn:partition:service:region:account-id:resource
 ---
 ## O'Reilly Live Lesson Notes
