@@ -24,7 +24,7 @@ Exam Date: ?
 
 - [[Qwiklabs S3 link]](https://amazon.qwiklabs.com/focuses/8582?catalog_rank=%7B%22rank%22%3A8%2C%22num_filters%22%3A1%2C%22has_search%22%3Atrue%7D&parent=catalog&search_id=4250467)
 
-- [[AWS Docs Manual VPC]](https://docs.aws.amazon.com/vpc/latest/userguide/working-with-vpcs.html) 
+- [[AWS Docs Manual Example VPC]](https://docs.aws.amazon.com/vpc/latest/userguide/vpc-subnets-commands-example.html) 
 
 ## Q&A from elsewhere
 
